@@ -39,18 +39,21 @@ function sieveOfEro (number) {
 
 // console.log(sieveOfEro(factorNumber));
 
+// Eratosthenes algorithm to find all primes under n
 var eratosthenes = function(n) {
-    // Eratosthenes algorithm to find all primes under n
     var array = [], upperLimit = Math.sqrt(n), output = [];
-    // Make an array from 2 to (n - 1)
+    // Make an array from 2 to (n - 1) with "true" values.  True will indicate prime, false will indicate composite.
     for (var i = 0; i < n; i++) {
         array.push(true);
     }
     // Remove multiples of primes starting from 2, 3, 5,...
     for (var i = 2; i <= upperLimit; i++) {
+        // Run the inner loop only if the number has NOT already been eliminated.
         if (array[i]) {
+            // Eliminate all composite numbers, beginning with the square of i (which will start at 2).
             for (var j = i * i; j < n; j += i) {
-                array[j] = false;
+                console.log(j);
+                array[j] = false; // sets to false, which means when the outer loop repeats, 4 etc. are already eliminated.
             }
         }
     }
